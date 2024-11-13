@@ -12,11 +12,11 @@ Upload ML algorithm code in separate files (Ex: Linear Regression, ). Please add
 Clone the repository to get a local copy of the code. Run this command in your terminal:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/rutuvirani/Machine-Learning.git
 ```
 ### 2. Creating a Branch
 
-It’s a good practice to create a new branch for each feature or fix. Use this command to create and switch to a new branch:
+Not needed for everyone. It’s a good practice to create a new branch for each feature or fix. Use this command to create and switch to a new branch:
 
 ```bash
 git checkout -b your-branch-name
@@ -60,7 +60,13 @@ git push origin your-branch-name
 ````
 Replace your-branch-name with the name of your branch.
 
-### 7. Creating a Pull Request
+### 7. Pull code from GitHub
+```bash
+git pull origin your-branch-name
+```
+
+
+### 8. Creating a Pull Request
 
 1. Go to the GitHub repository in your browser.
 2. Click on the “Pull Requests” tab.
@@ -70,7 +76,7 @@ Replace your-branch-name with the name of your branch.
 ### Additional Commands
 
 Here are some more helpful Git commands:
-
+https://github.com/rutuvirani/Machine-Learning.git
 **Pulling Changes**: To update your local branch with the latest changes from the remote repository:
 
 ```bash
