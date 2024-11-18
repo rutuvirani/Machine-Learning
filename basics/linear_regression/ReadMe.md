@@ -69,3 +69,150 @@ $$
 $$
 b = \bar{y} - m \bar{x}
 $$
+
+# Multiple Linear Regression (MLR) Derivation
+
+Multiple Linear Regression (MLR) is an extension of Simple Linear Regression (SLR) where we predict the target variable \( y \) using more than one feature. The goal is to find the best-fitting hyperplane in a multi-dimensional space that minimizes the error between the actual and predicted values.
+
+In MLR, the model equation is given by:
+
+$$
+\hat{y} = m_1 x_1 + m_2 x_2 + \dots + m_n x_n + b
+$$
+
+where:
+- \( \hat{y} \) is the predicted value of the output,
+- \( x_1, x_2, \dots, x_n \) are the input features,
+- \( m_1, m_2, \dots, m_n \) are the coefficients (slopes) for each feature,
+- \( b \) is the intercept term.
+
+## 1. Objective of Multiple Linear Regression
+
+The goal in MLR is to find the best values for the coefficients \( m_1, m_2, \dots, m_n \) and the intercept \( b \) that minimize the error between the actual output values \( y \) and the predicted output values \( \hat{y} \).
+
+To measure the error, we use the **Mean Squared Error (MSE)**, which is given by:
+
+$$
+\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2
+$$
+
+where:
+- \( N \) is the number of data points,
+- \( y_i \) is the actual value of the target variable for the \( i \)-th data point,
+- \( \hat{y}_i \) is the predicted value of the target variable for the \( i \)-th data point.
+
+Substituting the MLR model equation into the MSE formula:
+
+$$
+\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} \left( y_i - \left( m_1 x_{i1} + m_2 x_{i2} + \dots + m_n x_{in} + b \right) \right)^2
+$$
+
+## 2. Minimizing the MSE
+
+To find the values of \( m_1, m_2, \dots, m_n \), and \( b \) that minimize the MSE, we take the partial derivatives of the MSE with respect to each of the coefficients and set them equal to zero.
+
+### 2.1 Partial Derivative with Respect to \( m_j \)
+
+The partial derivative of the MSE with respect to \( m_j \) is:
+
+$$
+\frac{\partial \text{MSE}}{\partial m_j} = -\frac{2}{N} \sum_{i=1}^{N} x_{ij} \left( y_i - \left( m_1 x_{i1} + m_2 x_{i2} + \dots + m_n x_{in} + b \right) \right)
+$$
+
+### 2.2 Partial Derivative with Respect to \( b \)
+
+The partial derivative of the MSE with respect to \( b \) is:
+
+$$
+\frac{\partial \text{MSE}}{\partial b} = -\frac{2}{N} \sum_{i=1}^{N} \left( y_i - \left( m_1 x_{i1} + m_2 x_{i2} + \dots + m_n x_{in} + b \right) \right)
+$$
+
+### 2.3 Setting Partial Derivatives Equal to Zero
+
+Now, we set each of these partial derivatives to zero to minimize the error:
+
+$$
+\frac{\partial \text{MSE}}{\partial m_j} = 0 \quad \text{for each} \quad j = 1, 2, \dots, n
+$$
+
+$$
+\frac{\partial \text{MSE}}{\partial b} = 0
+$$
+
+These equations form a system of linear equations that can be solved to find the values of \( m_1, m_2, \dots, m_n \), and \( b \).
+
+## 3. Solving the System of Equations
+
+We can express the system of equations in matrix form. Let’s define the following:
+
+- \( \mathbf{X} \) is the \( N * (n+1) \)  matrix of input features, where the first column is a column of 1's (for the intercept term), and the remaining columns are the feature values \( x_1, x_2, \dots, x_n \):
+
+$$
+\mathbf{X} =
+\begin{bmatrix}
+1 & x_{11} & x_{12} & \dots & x_{1n} \\
+1 & x_{21} & x_{22} & \dots & x_{2n} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_{N1} & x_{N2} & \dots & x_{Nn} \\
+\end{bmatrix}
+$$
+
+- \( \mathbf{y} \) is the \( N \times 1 \) vector of actual output values:
+
+$$
+\mathbf{y} =
+\begin{bmatrix}
+y_1 \\
+y_2 \\
+\vdots \\
+y_N \\
+\end{bmatrix}
+$$
+
+- \( \mathbf{w} \) is the \( (n+1) \times 1 \) vector of model parameters (the coefficients \( m_1, m_2, \dots, m_n \) and the intercept \( b \)):
+
+$$
+\mathbf{w} =
+\begin{bmatrix}
+b \\
+m_1 \\
+m_2 \\
+\vdots \\
+m_n \\
+\end{bmatrix}
+$$
+
+Now, the MSE minimization problem can be rewritten as:
+
+$$
+\mathbf{X}^T \mathbf{X} \mathbf{w} = \mathbf{X}^T \mathbf{y}
+$$
+
+This is a **normal equation** that can be solved for \( \mathbf{w} \) to find the optimal values of the parameters:
+
+$$
+\mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+$$
+
+## 4. Final Model Equation
+
+Once the parameters \( \mathbf{w} \) are computed, the model equation can be written as:
+
+$$
+\hat{y} = b + m_1 x_1 + m_2 x_2 + \dots + m_n x_n
+$$
+
+where \( b \) is the intercept, and \( m_1, m_2, \dots, m_n \) are the coefficients for each feature.
+
+## Conclusion
+
+The goal of Multiple Linear Regression is to find the best coefficients \( m_1, m_2, \dots, m_n \) and intercept \( b \) that minimize the error between the actual and predicted values of the output. This is achieved by solving the normal equation:
+
+$$
+\mathbf{w} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}
+$$
+
+Once the coefficients are found, we can use them to make predictions for new data points.
+
+
+
