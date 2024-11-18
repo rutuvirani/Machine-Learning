@@ -22,7 +22,9 @@ where:
 - \( m_1, m_2, \dots, m_n \) are the slopes for each feature,
 - \( b \) is the intercept.
 
-## 3. Mean Squared Error (MSE)
+# Simple Linear Regression (SLR) Derivation
+
+## 1. Mean Squared Error (MSE)
 The goal of linear regression is to find the line that minimizes the error between the predicted values and the actual values. The most common loss function used is the Mean Squared Error (MSE), which is given by:
 
 $$
@@ -34,7 +36,7 @@ where:
 - \( y_i \) is the actual value of the output,
 - \( \hat{y}_i \) is the predicted value.
 
-## 4. Minimizing the MSE
+## 2. Minimizing the MSE
 To find the optimal values of \( m \) and \( b \), we differentiate the MSE with respect to both parameters and set them to zero.
 
 Substitute the predicted value \( \hat{y}_i = mx_i + b \) into the MSE equation:
@@ -53,7 +55,7 @@ $$
 \frac{\partial \text{MSE}}{\partial b} = -\frac{2}{N} \sum_{i=1}^{N} \left(y_i - (mx_i + b)\right)
 $$
 
-## 5. Solving for \( m \) and \( b \)
+## 3. Solving for \( m \) and \( b \)
 Setting the partial derivatives to zero:
 
 $$
