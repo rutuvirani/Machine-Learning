@@ -218,3 +218,20 @@ Once the coefficients are found, we can use them to make predictions for new dat
 
 
 
+## What is R² Score?
+
+The **R² score** (coefficient of determination) measures how well a regression model explains the variance in the target variable. It is defined as:
+
+$$
+R^2 = 1 - \frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}}
+$$
+
+- SS_res = Σ(yᵢ - ŷᵢ)² (Residual Sum of Squares, error between actual and predicted values).
+- SS_tot = Σ(yᵢ - ȳ)² (Total Sum of Squares, total variance in the target variable).
+
+### Key Points:
+- \( R^2 = 1 \): Perfect fit (model explains all variance in the data).
+- \( R^2 = 0 \): Model performs no better than predicting the mean.
+- \( R^2 < 0 \): Model performs worse than predicting the mean.
+
+In scikit-learn, the \( R^2 \) score can be computed using the `r2_score` function.
