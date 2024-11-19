@@ -235,3 +235,94 @@ $$
 - \( R^2 < 0 \): Model performs worse than predicting the mean.
 
 In scikit-learn, the \( R^2 \) score can be computed using the `r2_score` function.
+
+
+
+
+
+
+
+# Polynomial Regression
+
+Polynomial Regression is an extension of linear regression where we model the relationship between the dependent variable \( y \) and the independent variable \( x \) using polynomial terms. The degree of the polynomial helps in fitting non-linear relationships.
+
+## Model Equation
+
+The general form of a polynomial regression model is:
+
+$$ 
+\hat{y} = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_n x^n 
+$$
+
+where:
+- \( \hat{y} \): Predicted value of the dependent variable.
+- \( x \): Independent variable (feature).
+- \( w_0, w_1, \dots, w_n \): Coefficients (weights) for the polynomial terms.
+- \( n \): Degree of the polynomial.
+
+## Objective
+
+The objective of polynomial regression is to find the optimal coefficients \( w_0, w_1, \dots, w_n \) that minimize the error between the predicted values \( \hat{y} \) and the actual values \( y \). We typically use **Mean Squared Error (MSE)** as the cost function:
+
+$$ 
+\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} \left( y_i - \hat{y}_i \right)^2 
+$$
+
+where:
+- \( N \): Number of data points.
+- \( y_i \): Actual value of the dependent variable for the \( i \)-th data point.
+- \( \hat{y}_i \): Predicted value for the \( i \)-th data point.
+
+## Matrix Representation
+
+To solve for the coefficients \( w_0, w_1, \dots, w_n \) efficiently, we express the problem in matrix form. Let:
+
+- \( \mathbf{X} \) be the design matrix of shape \( N \times (n+1) \), where each row contains \( [1, x_i, x_i^2, \dots, x_i^n] \).
+- \( \mathbf{y} \) be the vector of actual output values of shape \( N \times 1 \).
+- \( \mathbf{w} \) be the vector of coefficients of shape \( (n+1) \times 1 \).
+
+### Design Matrix
+
+For \( N \) data points and a polynomial of degree \( n \), the design matrix \( \mathbf{X} \) is:
+
+$$
+\mathbf{X} =
+\begin{bmatrix}
+1 & x_1 & x_1^2 & \dots & x_1^n \\
+1 & x_2 & x_2^2 & \dots & x_2^n \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & x_N & x_N^2 & \dots & x_N^n
+\end{bmatrix}
+$$
+
+The relationship between \( \mathbf{y} \), \( \mathbf{X} \), and \( \mathbf{w} \) is:
+
+$$ 
+\mathbf{y} = \mathbf{X} \mathbf{w} + \epsilon 
+$$
+
+where \( \epsilon \) is the error term.
+
+### Normal Equation
+
+To find the coefficients \( \mathbf{w} \), we minimize the MSE by solving the **normal equation**:
+
+$$
+\mathbf{w} = \left( \mathbf{X}^\top \mathbf{X} \right)^{-1} \mathbf{X}^\top \mathbf{y}
+$$
+
+This equation allows us to compute the optimal values for the polynomial coefficients.
+
+## Steps for Polynomial Regression
+
+1. **Transform Features**:
+   - For each data point \( x_i \), compute higher-degree terms \( x_i^2, x_i^3, \dots, x_i^n \).
+   - Add a column of ones to \( \mathbf{X} \) for the intercept \( w_0 \).
+
+2. **Fit the Model**:
+   - Solve the normal equation to compute the coefficients \( \mathbf{w} \).
+
+3. **Make Predictions**:
+   - Use the polynomial equation \( \hat{y} = \mathbf{X} \mathbf{w} \) to predict the target variable.
+
+
