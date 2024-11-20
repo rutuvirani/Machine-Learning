@@ -325,4 +325,4 @@ This equation allows us to compute the optimal values for the polynomial coeffic
 3. **Make Predictions**:
    - Use the polynomial equation \( \hat{y} = \mathbf{X} \mathbf{w} \) to predict the target variable.
 
-
+i am chirag
