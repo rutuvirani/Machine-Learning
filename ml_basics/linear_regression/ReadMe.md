@@ -262,12 +262,6 @@ where:
 
 ## Objective
 
-The objective of polynomial regression is to find the optimal coefficients \( w_0, w_1, \dots, w_n \) that minimize the error between the predicted values \( \hat{y} \) and the actual values \( y \). We typically use **Mean Squared Error (MSE)** as the cost function:
-
-$$ 
-\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} \left( y_i - \hat{y}_i \right)^2 
-$$
-
 where:
 - \( N \): Number of data points.
 - \( y_i \): Actual value of the dependent variable for the \( i \)-th data point.
@@ -325,4 +319,18 @@ This equation allows us to compute the optimal values for the polynomial coeffic
 3. **Make Predictions**:
    - Use the polynomial equation \( \hat{y} = \mathbf{X} \mathbf{w} \) to predict the target variable.
 
+# Gradient Descent
 
+
+## Gradient Descent for Linear Regression
+
+### Why we need gradient descent in LR?
+
+In multiple linear regression, we need to calculated inverse of matrix \( \mathbf{X}^\top \mathbf{X} \) to calculate the coefficients. However, when the number of features(X) is large, the matrix \( \mathbf{ X}^\top \mathbf{X} \) can be very large and may not be invertible and it is computational expensive. In such cases, we can use gradient descent to find the coefficients.
+
+In lieane regression our goal is to find slope(weight) and intercept of best fitted line where MSE(Loss function) minimize and if we visulize the graph of MSE vs. weight and MSE vs. intercept, it will parabolic and we need to find minima of that curve. 
+
+previously to find the minima, we used the derivative of MSE with respect to weight and intercept = 0 and solve for weight and intercept. However, in gradient descent we use the derivative of MSE.
+
+For Gradient Descent,
+step 1: 
